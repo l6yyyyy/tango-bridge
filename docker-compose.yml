@@ -1,0 +1,17 @@
+services:
+  tango-bridge:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tango-bridge
+    ports:
+      - "15037:15037"
+    environment:
+      - ADB_MDNS_OPENSCREEN=1
+    volumes:
+      - /dev/bus/usb:/dev/bus/usb:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    devices:
+      - /dev/usb:/dev/usb:ro
+    restart: unless-stopped
+    network_mode: host
