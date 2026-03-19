@@ -2,10 +2,15 @@ FROM rust:1.75-bookworm as builder
 
 WORKDIR /app
 
-COPY Cargo.toml Cargo.lock ./
+# 复制必要文件
+COPY Cargo.toml ./
 COPY src ./src
 COPY adb ./adb
 
+# 生成新的 Cargo.lock 文件
+RUN cargo fetch
+
+# 构建
 RUN cargo build --release
 
 FROM debian:bookworm-slim
