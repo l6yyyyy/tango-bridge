@@ -1,4 +1,4 @@
-FROM registry.cn-hangzhou.aliyuncs.com/dockerTO/rust:1.75-bookworm as builder
+FROM rust:1.75-bookworm as builder
 
 WORKDIR /app
 
